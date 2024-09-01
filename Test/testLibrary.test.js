@@ -81,4 +81,12 @@ describe('Borrow Book Testing', () => {
         expect(response).toEqual(new Book('978-0134845623',"Python Crash Course","Eric Matthes","2015"))
 
     })
+
+    // testing copy_count field 
+    test('should decrement copy_count of book',()=>{
+        addBookHelperInstance.addBook('978-0133379937',"Programming in C","Stephen G. Kochan","2004")
+        borrowBookHelperInstance.borrowBook('978-0133379937');
+        // copy_count must be zero after borrowing this book
+        expect(libraryInstance.getAllBooks()['978-0133379937'].copy_count).toBe(0)
+    })
 })
