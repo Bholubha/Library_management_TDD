@@ -114,5 +114,21 @@ class ReturnBookHelper {
 
 }
 
+// Helper class for view books
+class ViewBooksHelper {
+    
+    // binding class with particular library through Library's instance
+    constructor(libraryInstance) {
+        this.library = libraryInstance;
+    }
 
-module.exports = {Library, AddBookHelper, BorrowBookHelper,ReturnBookHelper}
+    viewBooks() {
+        // access all books 
+        const books = this.library.getAllBooks();
+        // return array of Object of type Book
+        return Object.values(books).map(book => book.bookDetails);
+    }
+}
+
+
+module.exports = {Library, AddBookHelper, BorrowBookHelper,ReturnBookHelper,ViewBooksHelper}

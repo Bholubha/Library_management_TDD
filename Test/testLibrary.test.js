@@ -1,4 +1,4 @@
-const {Library,AddBookHelper,BorrowBookHelper,ReturnBookHelper} = require('../Library')
+const {Library,AddBookHelper,BorrowBookHelper,ReturnBookHelper,ViewBooksHelper} = require('../Library')
 const Book = require('../Book')
 
 // Unit Test for Adding book
@@ -168,5 +168,5 @@ describe('View Books Testing',()=>{
         let books =  viewBooksHelperInstance.viewBooks()
         expect(books).toEqual([])
     })
-    
+
 })
