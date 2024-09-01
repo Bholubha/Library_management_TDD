@@ -68,8 +68,11 @@ class BorrowBookHelper {
     }
 
     borrowBook(ISBN) {
-        // access all books
-        const books = this.library.getAllBooks();
+        // access all books by reference
+        const books = this.library._getBooksReference();
+
+        books[ISBN].copy_count -= 1;
+
         // return copy of book object (not reference) by using spread operator.
         return { ...books[ISBN].bookDetails };
     }  
