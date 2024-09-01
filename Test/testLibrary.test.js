@@ -38,5 +38,9 @@ describe('Add Book Testing', () => {
         expect(()=> addBookHelperInstance.addBook('978-0134685991',"Java: The Complete Reference")).toThrow("Please provide enough informations")
     })
 
+    // checking ISBN is valid or not
+    test('should throw an error if ISBN is not in valid format',()=>{
+        expect(()=> addBookHelperInstance.addBook('978-01359570avc',"JavaScript and JQuery","Jon Duckett","2014")).toThrow("Please provide correct ISBN")
+    })
 
 })
