@@ -145,3 +145,28 @@ describe('Return Book Testing',()=>{
     })
 
 })
+
+// Unit-test for View Books
+describe('View Books Testing',()=>{
+
+    // Declare all Instance variable which will required..
+    let libraryInstance
+    let addBookHelperInstance;
+    let borrowBookHelperInstance;
+    let returnBookHelperInstance
+    let viewBooksHelperInstance
+    beforeAll(() => {
+        libraryInstance = new Library
+        addBookHelperInstance = new AddBookHelper(libraryInstance)
+        borrowBookHelperInstance = new BorrowBookHelper(libraryInstance)
+        returnBookHelperInstance = new ReturnBookHelper(libraryInstance)
+        viewBooksHelperInstance = new ViewBooksHelper(libraryInstance)
+    });
+
+    // viewBooks should return an empty array when there is not any books
+    test('should return empty array for instance of Library which not contains any books',()=>{
+        let books =  viewBooksHelperInstance.viewBooks()
+        expect(books).toEqual([])
+    })
+    
+})
