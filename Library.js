@@ -37,13 +37,20 @@ class AddBookHelper {
         const books = this.library._getBooksReference()
         const book = new Book(ISBN, title, author, publication_year);
 
-    // Initialize object for new book with appropriate value       
-        if (books[ISBN] === undefined) {
-            books[ISBN] = {
-                bookDetails: book, // store book object as bookDetails property
-                copy_count: 0
-            };
+        // If book already present with same ISBN in Database then it must be same as given in input.[ for uniqueness of ISBN ]
+        if (books[ISBN] !== undefined) {
+            if (JSON.stringify(books[ISBN].bookDetails) !== JSON.stringify(book)) {
+                throw new Error("Provided ISBN already present for other book");
+            }
         }
+
+        // Initialize object for new book with appropriate value       
+            if (books[ISBN] === undefined) {
+                books[ISBN] = {
+                    bookDetails: book, // store book object as bookDetails property
+                    copy_count: 0
+                };
+            }
 
         // increment copy_count for tracking number of identical books
         books[ISBN].copy_count += 1;
