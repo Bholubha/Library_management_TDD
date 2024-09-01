@@ -89,4 +89,10 @@ describe('Borrow Book Testing', () => {
         // copy_count must be zero after borrowing this book
         expect(libraryInstance.getAllBooks()['978-0133379937'].copy_count).toBe(0)
     })
+
+    // throw an error if book is not present in Database
+    test('should throw an error if book is not present in Database with provided ISBN',()=>{
+        expect(()=>borrowBookHelperInstance.borrowBook('978-0201616224')).toThrow('Book is not present in the database with this ISBN')
+    })
+
 })
