@@ -103,3 +103,28 @@ describe('Borrow Book Testing', () => {
     })
 
 })
+
+// Unit test for Return Book
+describe('Return Book Testing',()=>{
+    // Declare all Instance variable which will required..
+    let addBookHelperInstance;
+    let borrowBookHelperInstance;
+    let returnBookHelperInstance
+    let libraryInstance
+    beforeAll(() => {
+        libraryInstance = new Library
+        addBookHelperInstance = new AddBookHelper(libraryInstance);
+        borrowBookHelperInstance = new BorrowBookHelper(libraryInstance);
+        returnBookHelperInstance = new ReturnBookHelper(libraryInstance)
+    });
+
+    // First test expect success message of returning book only
+    test('should return successfull message of returning book',()=>{
+
+        addBookHelperInstance.addBook('978-1449355739',"Learning Python","Mark Lutz","2013");
+        borrowBookHelperInstance.borrowBook('978-1449355739')
+        const message = returnBookHelperInstance.returnBook('978-1449355739')
+        expect(message).toBe("Book returned successfully")
+        
+    })
+})
