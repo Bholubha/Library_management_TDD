@@ -53,4 +53,11 @@ describe('Add Book Testing', () => {
         expect(libraryInstance.getAllBooks()['978-1118531648'].copy_count).toBe(2)
     })
 
+    
+    // should throw an error if ISBN is already present, but details of book to be added are different from available one in Database
+    test('should throw an error if ISBN is already present for different book',()=>{
+        addBookHelperInstance.addBook('978-0134757599',"Head First Java","Kathy Sierra, Bert Bates","2005")
+        expect(()=> addBookHelperInstance.addBook('978-0134757599',"Mathematics","Ramanujav","2005")).toThrow("Provided ISBN already present for other book")
+    })
+
 })
