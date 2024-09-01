@@ -1,4 +1,5 @@
 const {Library,AddBookHelper} = require('../Library')
+const Book = require('../Book')
 
 // Unit Test for Adding book
 describe('Add Book Testing', () => {
