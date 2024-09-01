@@ -19,4 +19,17 @@ describe('Add Book Testing', () => {
         expect(message).toBe("Book stored successfully")
     });
 
+    // testing that book actually store in Database
+    test('should store book in Database',()=>{
+        addBookHelperInstance.addBook('978-0596805524',"JavaScript: The Good Parts","Douglas Crockford","2008")
+        
+        // libraryInstance.getAllBooks should return all books present in database as 'Object'
+        // now check book with particular ISBN was define or undefine
+        expect(libraryInstance.getAllBooks()['978-0596805524']).toBeDefined()
+
+        // if define then also match the bookDetails(object of 'Book') with expected object of 'Book'
+        expect(libraryInstance.getAllBooks()['978-0596805524'].bookDetails).toEqual(new Book('978-0596805524',"JavaScript: The Good Parts","Douglas Crockford","2008"))
+
+    })
+
 })
