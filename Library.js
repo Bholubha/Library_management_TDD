@@ -96,8 +96,14 @@ class ReturnBookHelper {
     constructor(libraryInstance) {
         this.library = libraryInstance;
     }
-    
+
     returnBook(ISBN) {
+        // access BOOKS by reference
+        const books = this.library._getBooksReference();
+        
+        // Increment copy_count 
+        books[ISBN].copy_count += 1;
+
         return "Book returned successfully";
     }
 
