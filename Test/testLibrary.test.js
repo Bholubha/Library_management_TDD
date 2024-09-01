@@ -95,4 +95,11 @@ describe('Borrow Book Testing', () => {
         expect(()=>borrowBookHelperInstance.borrowBook('978-0201616224')).toThrow('Book is not present in the database with this ISBN')
     })
 
+    // throw an error if book is currently unavailable
+    test('should throw an error if book is  currently unavailable',()=>{
+        addBookHelperInstance.addBook('978-0321563842',"Effective C++","Scott Meyers","2005");
+        borrowBookHelperInstance.borrowBook('978-0321563842')
+        expect(()=>borrowBookHelperInstance.borrowBook('978-0321563842')).toThrow('Book is currently unavailable')
+    })
+
 })
