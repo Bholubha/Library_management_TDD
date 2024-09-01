@@ -36,8 +36,17 @@ class AddBookHelper {
         
         const books = this.library._getBooksReference()
         const book = new Book(ISBN, title, author, publication_year);
-        books[ISBN] = {}
-        books[ISBN].bookDetails = book
+
+    // Initialize object for new book with appropriate value       
+        if (books[ISBN] === undefined) {
+            books[ISBN] = {
+                bookDetails: book, // store book object as bookDetails property
+                copy_count: 0
+            };
+        }
+
+        // increment copy_count for tracking number of identical books
+        books[ISBN].copy_count += 1;
         return "Book stored successfully"
     }    
 
