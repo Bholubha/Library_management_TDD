@@ -25,6 +25,11 @@ class AddBookHelper {
 
     addBook(ISBN, title, author, publication_year) {
 
+        // All params have value
+        if (!ISBN || !title || !author || !publication_year) {
+            throw new Error('Please provide enough informations');
+        }
+
         const books = this.library._getBooksReference()
         const book = new Book(ISBN, title, author, publication_year);
         books[ISBN] = {}
