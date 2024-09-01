@@ -71,6 +71,11 @@ class BorrowBookHelper {
         // access all books by reference
         const books = this.library._getBooksReference();
 
+        // If book is not present in Database then throw an error
+        if (books[ISBN] === undefined) {
+            throw new Error('Book is not present in the database with this ISBN');
+        }
+
         books[ISBN].copy_count -= 1;
 
         // return copy of book object (not reference) by using spread operator.
