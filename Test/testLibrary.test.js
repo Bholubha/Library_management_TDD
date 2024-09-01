@@ -61,3 +61,24 @@ describe('Add Book Testing', () => {
     })
 
 })
+
+// Unit Test for Borrow book
+describe('Borrow Book Testing', () => {
+    // Declare all Instance variable which will required..
+    let addBookHelperInstance;
+    let borrowBookHelperInstance;
+    let libraryInstance
+    beforeAll(() => {
+        libraryInstance = new Library
+        addBookHelperInstance = new AddBookHelper(libraryInstance);
+        borrowBookHelperInstance = new BorrowBookHelper(libraryInstance);
+    });
+
+    // borrowBook method of Helper Class should return Desired Book Object
+    test('should return details of book correspond to ISBN',()=>{
+        addBookHelperInstance.addBook('978-0134845623',"Python Crash Course","Eric Matthes","2015")
+        const response = borrowBookHelperInstance.borrowBook('978-0134845623');
+        expect(response).toEqual(new Book('978-0134845623',"Python Crash Course","Eric Matthes","2015"))
+
+    })
+})
