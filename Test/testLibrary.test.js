@@ -1,4 +1,4 @@
-const {Library,AddBookHelper,BorrowBookHelper} = require('../Library')
+const {Library,AddBookHelper,BorrowBookHelper,ReturnBookHelper} = require('../Library')
 const Book = require('../Book')
 
 // Unit Test for Adding book
@@ -125,6 +125,6 @@ describe('Return Book Testing',()=>{
         borrowBookHelperInstance.borrowBook('978-1449355739')
         const message = returnBookHelperInstance.returnBook('978-1449355739')
         expect(message).toBe("Book returned successfully")
-        
+
     })
 })

@@ -89,4 +89,17 @@ class BorrowBookHelper {
     
 }
 
-module.exports = {Library, AddBookHelper, BorrowBookHelper}
+// Helper class for return book
+class ReturnBookHelper {
+
+    // binding class with particular library through Library's instance
+    constructor(libraryInstance) {
+        this.library = libraryInstance;
+    }
+    
+    returnBook(ISBN) {
+        return "Book returned successfully";
+    }
+
+}
+module.exports = {Library, AddBookHelper, BorrowBookHelper,ReturnBookHelper}
