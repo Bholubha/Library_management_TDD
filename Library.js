@@ -125,8 +125,8 @@ class ViewBooksHelper {
     viewBooks() {
         // access all books 
         const books = this.library.getAllBooks();
-        // return array of Object of type Book
-        return Object.values(books).map(book => book.bookDetails);
+        // return those books which have copy_count > 0 as array of object of type Book
+        return Object.values(books).filter(book => book.copy_count > 0).map(book => book.bookDetails);
     }
 }
 
