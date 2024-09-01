@@ -169,4 +169,32 @@ describe('View Books Testing',()=>{
         expect(books).toEqual([])
     })
 
+    // testing that viewBook remain consistent after applying add, borrow and return as well.
+    test('should return available books after applying add,borrow and return',()=>{
+        
+        // add two books
+        addBookHelperInstance.addBook('978-0134754499',"Automate the Boring Stuff with Python","Al Sweigart","2015")
+        addBookHelperInstance.addBook('978-0132354165',"Effective Modern C++","Scott Meyers","2014")
+
+        let books =  viewBooksHelperInstance.viewBooks()
+        // viewBook should return array of object(type 'Book') of 2 books
+        let expected_books = [new Book('978-0134754499',"Automate the Boring Stuff with Python","Al Sweigart","2015"), new Book('978-0132354165',"Effective Modern C++","Scott Meyers","2014")]
+
+        expect(books).toEqual(expected_books)
+
+        // borrow one book
+        borrowBookHelperInstance.borrowBook('978-0132354165')
+        books =  viewBooksHelperInstance.viewBooks()
+        // After borrowing viewBook should return only one object(type 'Book') of book
+        expected_books = [new Book('978-0134754499',"Automate the Boring Stuff with Python","Al Sweigart","2015")]
+        expect(books).toEqual(expected_books)
+
+        // return borrowed book
+        returnBookHelperInstance.returnBook('978-0132354165')
+        books =  viewBooksHelperInstance.viewBooks()
+        // After return book viewBook should again return array of object(type 'Book') of 2 books
+        expected_books = [new Book('978-0134754499',"Automate the Boring Stuff with Python","Al Sweigart","2015"), new Book('978-0132354165',"Effective Modern C++","Scott Meyers","2014")]
+        expect(books).toEqual(expected_books)
+
+    })
 })
