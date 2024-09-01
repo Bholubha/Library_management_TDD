@@ -139,4 +139,9 @@ describe('Return Book Testing',()=>{
 
     })
 
+    // throw error if book which user want to return is not in Database.
+    test('should throw an error if book is not present in Database with provided ISBN',()=>{
+        expect(()=>returnBookHelperInstance.returnBook('123456')).toThrow("There is no record of the provided ISBN")
+    })
+
 })
