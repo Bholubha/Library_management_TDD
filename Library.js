@@ -76,6 +76,11 @@ class BorrowBookHelper {
             throw new Error('Book is not present in the database with this ISBN');
         }
 
+        // If copy_count = 0 then throw Error - Book is currently unavailable
+        if (books[ISBN].copy_count === 0) {
+            throw new Error('Book is currently unavailable');
+        }
+
         books[ISBN].copy_count -= 1;
 
         // return copy of book object (not reference) by using spread operator.
