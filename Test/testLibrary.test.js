@@ -127,4 +127,16 @@ describe('Return Book Testing',()=>{
         expect(message).toBe("Book returned successfully")
 
     })
+
+    // After returning book copy_count should be increased
+    test('should increment copy_count of book in Database',()=>{
+
+        addBookHelperInstance.addBook('978-0132354165',"Effective Modern C++","Scott Meyers","2014");
+        borrowBookHelperInstance.borrowBook('978-0132354165')
+        returnBookHelperInstance.returnBook('978-0132354165')
+        // tested that copy_count decrement by borrowBook, so now it increment by returnBook also.
+        expect(libraryInstance.getAllBooks()['978-0132354165'].copy_count).toBe(1)
+
+    })
+
 })
