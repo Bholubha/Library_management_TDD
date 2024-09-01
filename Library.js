@@ -30,6 +30,10 @@ class AddBookHelper {
             throw new Error('Please provide enough informations');
         }
 
+        // ISBN should contains number and '-' only
+        const regex = /^[-\d]+$/;
+        if(!regex.test(ISBN)) throw new Error('Please provide correct ISBN');
+        
         const books = this.library._getBooksReference()
         const book = new Book(ISBN, title, author, publication_year);
         books[ISBN] = {}
