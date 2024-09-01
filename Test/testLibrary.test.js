@@ -33,4 +33,10 @@ describe('Add Book Testing', () => {
 
     })
 
+     // all information must be provided about book
+     test('should throw an error if enough information about book was NOT provided',()=>{        
+        expect(()=> addBookHelperInstance.addBook('978-0134685991',"Java: The Complete Reference")).toThrow("Please provide enough informations")
+    })
+
+
 })

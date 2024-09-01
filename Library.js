@@ -24,6 +24,7 @@ class AddBookHelper {
     }
 
     addBook(ISBN, title, author, publication_year) {
+
         const books = this.library._getBooksReference()
         const book = new Book(ISBN, title, author, publication_year);
         books[ISBN] = {}
