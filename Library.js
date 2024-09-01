@@ -16,9 +16,9 @@ class Library {
     
 }
 
-// class for adding book
+// Helper class for adding book
 class AddBookHelper {
-    // binding class with particular library through library's instance
+    // binding class with particular library through Library's instance
     constructor(libraryInstance) {
         this.library = libraryInstance;
     }
@@ -57,6 +57,22 @@ class AddBookHelper {
         return "Book stored successfully"
     }    
 
-}    
+}
 
-module.exports = {Library, AddBookHelper}
+// Helper Class for Borrow Book
+class BorrowBookHelper {
+
+    // binding class with particular library through Library's instance
+    constructor(libraryInstance) {
+        this.library = libraryInstance;
+    }
+
+    borrowBook(ISBN) {
+        // access all books
+        const books = this.library.getAllBooks();
+        // return copy of book object (not reference) by using spread operator.
+        return { ...books[ISBN].bookDetails };
+    }  
+    
+}
+module.exports = {Library, AddBookHelper, BorrowBookHelper}
