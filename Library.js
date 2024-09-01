@@ -101,6 +101,11 @@ class ReturnBookHelper {
         // access BOOKS by reference
         const books = this.library._getBooksReference();
 
+        // If book with provided ISBN is not in Database then throw an Error
+        if (books[ISBN] === undefined) {
+            throw new Error('There is no record of the provided ISBN');
+        }
+
         // Increment copy_count 
         books[ISBN].copy_count += 1;
 
